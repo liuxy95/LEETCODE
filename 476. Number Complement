@@ -1,0 +1,26 @@
+int findComplement(int num) {
+    int bit_1[31];
+    int i=0;
+    int comp=0;
+    int p=0;
+    int n=1;
+    
+    for(i=0;i<31;i++)
+   {
+       bit_1[i]=num % 2;
+       if(bit_1[i]==1)
+        {
+            p=0;
+        }
+        else
+            p=1;
+       num=num/2;
+       
+       if(num<1)
+            break;
+       
+       comp=comp+n*p;
+       n=n*2;
+   }
+   return comp;
+}
