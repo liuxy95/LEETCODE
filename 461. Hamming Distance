@@ -1,0 +1,26 @@
+int hammingDistance(int x, int y) {
+   int bit_1[31],bit_2[31];
+   int i=0;
+   int hamming=0;
+   int n;
+   
+   for(i=0;i<31;i++)
+   {
+       /*n=power(2,i);
+       bit_1[i]=x / n;
+       bit_2[i]=y / n;
+       x=x % n;
+       y=y % n;*/
+       
+       bit_1[i]=x % 2;
+       bit_2[i]=y % 2;
+       x=x / 2;
+       y=y / 2;
+       
+       if(bit_1[i]+bit_2[i]==1)
+       {
+           hamming++;
+       }
+   }
+   return hamming;
+}
