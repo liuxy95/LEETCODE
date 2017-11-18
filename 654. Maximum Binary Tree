@@ -1,0 +1,39 @@
+/*
+struct TreeNode {
+    int val;
+    struct TreeNode *left;
+    struct TreeNode *right;
+ };*/
+
+struct TreeNode* constructMaximumBinaryTree(int* nums, int numsSize) {
+    int max_num=0;
+    int max_position;
+    int numsSize_R, numsSize_L;
+    int i=nums[0];
+    int *ptr_R=NULL;
+    int *ptr_L=NULL;
+
+    ptr_L = nums;
+
+    if(numsSize==0)
+        return NULL;
+
+    for ( i=0; i<numsSize; i++ )
+    {
+        if( nums[i] >= max_num )
+        {
+            max_num = nums[i];
+            max_position = i;
+            ptr_R = &nums[i+1];
+        }
+    }
+    numsSize_L = max_position;
+    numsSize_R = numsSize - max_position - 1;
+
+    struct TreeNode *root_ptr;
+    root_ptr = (struct TreeNode*)malloc(sizeof(struct TreeNode));
+    root_ptr->val = max_num;
+    root_ptr->left = constructMaximumBinaryTree( ptr_L, numsSize_L );
+    root_ptr->right = constructMaximumBinaryTree( ptr_R, numsSize_R );
+    return root_ptr;
+}
